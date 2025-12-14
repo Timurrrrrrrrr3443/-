@@ -114,14 +114,7 @@ button:hover{
 
 <div id="content"></div>
 
-  <!-- Кнопка Telegram -->
-<button class="c6" id="btnTelegram">Telegram</button>
-document.getElementById("btnTelegram").addEventListener("click", ()=>{
-  //
-  window.open("https://t.me/shiffeld", "_blank");
-});
-
-
+  
 <script>
 // === ГРАФІКИ (ЗАВЖДИ СТОВПЧИКОМ) ===
 const schedule = {
@@ -138,6 +131,11 @@ const schedule = {
   "6.1": ["02:00–06:00","08:00-12:00","14:00-16:00","20:00-24:00"],
   "6.2": ["00:00–02:00","06:00-10:00","13:00-14:00","18:00-22:00"]
 };
+
+  document.getElementById("btnTelegram").addEventListener("click", ()=>{
+  // Замініть YOUR_USERNAME на ваш нік у Telegram
+  window.open("https://t.me/shiffeld", "_blank");
+});
 
 function show(q){
   document.getElementById("title").innerText = "Черга " + q;
@@ -163,5 +161,6 @@ function show(q){
 
 </body>
 </html>
+
 
 
