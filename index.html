@@ -13,6 +13,24 @@ body{
   color:white;
 }
 
+/* SPLASH */
+#splash{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  font-weight:bold;
+  background: linear-gradient(135deg,#000000,#1a1a1a);
+  z-index:1000;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeOut{
+  to{opacity:0; visibility:hidden;}
+}
+
 header{
   text-align:center;
   padding:15px;
@@ -62,10 +80,6 @@ button:hover{
   border-radius:12px;
   font-size:18px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: background 0.3s;
-}
-.time-block:hover{
-  background: linear-gradient(135deg,#16a085,#1abc9c);
 }
 
 /* Графік */
@@ -82,7 +96,6 @@ button:hover{
   margin:0 5px;
   background:#ffffff33;
   border-radius:8px;
-  transition: background 0.3s;
 }
 
 .bar div{
@@ -90,11 +103,21 @@ button:hover{
   width:100%;
   border-radius:8px;
 }
+
+/* приховуємо меню до splash */
+#main{
+  display:none;
+}
 </style>
 </head>
 
 <body>
 
+<!-- SPLASH -->
+<div id="splash">Світло Суми</div>
+
+<!-- ОСНОВНИЙ КОНТЕНТ -->
+<div id="main">
 <header id="title">Головне меню</header>
 
 <div class="menu">
@@ -113,9 +136,16 @@ button:hover{
 </div>
 
 <div id="content"></div>
-  
+</div>
+
 <script>
-// === ГРАФІКИ (ЗАВЖДИ СТОВПЧИКОМ) ===
+// SPLASH LOGIC
+setTimeout(()=>{
+  document.getElementById("splash").style.animation = "fadeOut 0.5s forwards";
+  document.getElementById("main").style.display = "block";
+},2000);
+
+// === ГРАФІКИ ===
 const schedule = {
   "1.1": ["00:00–04:00","06:00–10:00","12:00-16:00"],
   "1.2": ["00:00–02:00","04:00-08:00","10:00-14:00","16:00-18:00","22:00-24:00"],
@@ -133,28 +163,24 @@ const schedule = {
 
 function show(q){
   document.getElementById("title").innerText = "Черга " + q;
-
   let html = "<h3>Відключення:</h3>";
-
   schedule[q].forEach(t=>{
     html += `<div class="time-block">${t}</div>`;
   });
-
   html += `
-    <div class="chart">
-      <div class="bar"><div style="height:120px"></div></div>
-      <div class="bar"><div style="height:80px"></div></div>
-      <div class="bar"><div style="height:150px"></div></div>
-      <div class="bar"><div style="height:60px"></div></div>
-    </div>
-  `;
-
+  <div class="chart">
+    <div class="bar"><div style="height:120px"></div></div>
+    <div class="bar"><div style="height:80px"></div></div>
+    <div class="bar"><div style="height:150px"></div></div>
+    <div class="bar"><div style="height:60px"></div></div>
+  </div>`;
   document.getElementById("content").innerHTML = html;
 }
 </script>
 
 </body>
 </html>
+
 
 
 
